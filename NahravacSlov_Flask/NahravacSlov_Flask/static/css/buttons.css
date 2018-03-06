@@ -1,0 +1,86 @@
+
+.round-button {
+    display:inline-block;
+    width:60px;
+    height:60px;
+    line-height:54px;
+    border: 3px solid #3f3f3f;
+    border-radius: 50%;
+    color:#fff;
+    text-align:center;
+    text-decoration:none;
+    /* box-shadow: 0 0 3px gray; */
+    font-size:18px;
+    font-weight:normal;
+    background: #141414;
+}
+.round-button.enabled {
+    cursor: pointer;
+    /* background: #0a0a0a; */
+}
+.round-button.enabled:hover {
+    opacity: 0.8;
+}
+.round-button.disabled {
+    opacity: 0.3;
+}
+/* .round-button.enabled {
+     background: #141414; 
+} */
+/* #btnRec.enabled {
+    background: #4d0303;
+}
+#btnPlay.enabled {
+    background: #043a04;
+} */
+#btnRec.glowing {
+    background: #b80707;
+}
+#btnPlay.glowing {
+    background: #1b9b19;
+}
+
+button {
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    /* font-family: Raleway; */
+}
+
+button.enabled {
+    cursor: pointer;
+    background-color: #222222;
+}
+button.enabled:hover {
+    opacity: 0.8;
+}
+button.disabled {
+    background-color: #bbbbbb;
+}
+
+
+.link {
+    cursor: pointer;
+    color: #505050;
+    font-style: italic;
+}
+
+.link:hover {
+    text-decoration: underline;
+    opacity: 0.8;
+}
+
+
+
+/* .round-button svg {
+    position: relative;
+    top: 14px;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    left: 4px;
+    right: 0;
+    margin: auto;
+    text-align: center;
+} */

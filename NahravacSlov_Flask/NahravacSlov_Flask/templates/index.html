@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/base.css">
+    <link rel="stylesheet" type="text/css" href="css/buttons.css">
+    <link rel="stylesheet" type="text/css" href="css/content.css">
+    <title>Nahravac slov</title>
+</head>
+
+<body>
+    <div id="main-panel">
+        <div id="content"></div>
+        <div id="display-container">
+            <canvas id="display"></canvas>
+        </div>
+        <div id="top-ctrls" class="controls">
+            <p id='btnOpravitNahravku' class="link text-center" onclick="btnOpravitNahravku_click()">Opravit poslední nahrávku</p>
+            <!-- ↶   -->
+        </div>
+        <div id="left-ctrls" class="controls">
+            <a id="btnRec" class="round-button enabled" onclick="btnRec_click()">REC</a>
+            <a id="btnPlay" class="round-button enabled" onclick="btnPlay_click()">▷</a>
+            <!-- <a class="round-button" id="btnPlay" style="margin-left: 5px">
+                <svg height="20" width="20">
+                    <polygon points="2,2 2,18 14,10" style="fill:transparent;stroke:#fff;stroke-width:1.5" />
+                </svg>
+            </a> -->
+        </div>
+        <div id="right-ctrls" class="controls">
+            <button id="btnNext" class="enabled" type="button" onclick="btnNext_click()">Pokračovat</button>
+        </div>
+    </div>
+</body>
+
+
+<script src="js/init.js"></script>
+<script src="js/audio-player.js"></script>
+<script src="js/audio-input.js"></script>
+<script src="js/audio-display.js"></script>
+<script src="js/audio-recorder-worker.js"></script>
+<script src="js/audio-recorder.js"></script>
+<script src="js/upload.js"></script>
+
+<script src="js/nahravac-kroky.js"></script>
+<script src="js/nahravac.js"></script>
+
+</body>
+
+</html>

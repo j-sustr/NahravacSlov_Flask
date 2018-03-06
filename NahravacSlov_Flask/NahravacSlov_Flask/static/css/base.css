@@ -1,0 +1,104 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    user-select: none;
+    background-color: #c0c0c0;
+    font-size: 1.4em;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: normal;
+    color: #050505;
+  }
+  
+  #main-panel {
+    background-color: #ffffff;
+    margin: 100px auto;
+    /* font-family: Raleway; */
+    padding: 40px;
+    width: 70%;
+    min-width: 300px;
+    max-width: 600px;
+    min-height: 400px;
+    position: relative;
+    box-shadow: 5px 10px 18px #888888;
+  }
+  
+  h1 {
+    text-align: center;  
+  }
+  
+  input {
+    padding: 10px;
+    /* width: 100%; */
+    font-size: 17px;
+    font-family: Raleway;
+    border: 1px solid #aaaaaa;
+  }
+  
+  /* Mark input boxes that gets an error on validation: */
+  input.invalid {
+    background-color: #ffdddd;
+  }
+  
+  /* Hide all steps by default: */
+  .tab {
+    display: none;
+  }
+  
+  /* Make circles that indicate the steps of the form: */
+  .step {
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbbbbb;
+    border: none;  
+    border-radius: 50%;
+    display: inline-block;
+    opacity: 0.5;
+  }
+  
+  .step.active {
+    opacity: 1;
+  }
+  
+  /* Mark the steps that are finished and valid: */
+  .step.finish {
+    background-color: rgb(80, 80, 80);
+  }
+
+  .controls {
+    overflow:auto;
+    position: absolute; 
+    bottom: 0;
+    margin-bottom: 20px;
+  }
+
+  #left-ctrls {
+      left: 0;
+      margin-left: 30px;
+  }
+
+  #right-ctrls {
+      right: 0;
+      margin-right: 30px;
+  }
+
+  #top-ctrls {
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    margin-bottom: 60px;
+  }
+
+  #display-container {
+    position: absolute; 
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin-bottom: 130px;
+    margin-left: 30px;
+    margin-right: 30px;
+    height: 50px;
+  }

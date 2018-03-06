@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>9cdd1089-b1fb-4331-a7c8-099517e60a66</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <ProjectTypeGuids>{789894c7-04a9-4a11-a6b5-3f4435165112};{1b580a1a-fdb3-4b32-83e1-6407eb2722e6};{349c5851-65df-11da-9384-00065b846f21};{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
+    <StartupFile>runserver.py</StartupFile>
+    <SearchPath>
+    </SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <LaunchProvider>Web launcher</LaunchProvider>
+    <WebBrowserUrl>http://localhost</WebBrowserUrl>
+    <OutputPath>.</OutputPath>
+    <SuppressCollectPythonCloudServiceFiles>true</SuppressCollectPythonCloudServiceFiles>
+    <Name>NahravacSlov_Flask</Name>
+    <RootNamespace>NahravacSlov_Flask</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="runserver.py" />
+    <Compile Include="NahravacSlov_Flask\__init__.py" />
+    <Compile Include="NahravacSlov_Flask\views.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="NahravacSlov_Flask\" />
+    <Folder Include="NahravacSlov_Flask\static\" />
+    <Folder Include="C:\Users\jansu\OneDrive\VS\NahravacSlov_Flask\NahravacSlov_Flask\NahravacSlov_Flask\static\css\" />
+    <Folder Include="C:\Users\jansu\OneDrive\VS\NahravacSlov_Flask\NahravacSlov_Flask\NahravacSlov_Flask\static\img\" />
+    <Folder Include="C:\Users\jansu\OneDrive\VS\NahravacSlov_Flask\NahravacSlov_Flask\NahravacSlov_Flask\static\js\" />
+    <Folder Include="NahravacSlov_Flask\static\css\" />
+    <Folder Include="NahravacSlov_Flask\static\img\" />
+    <Folder Include="NahravacSlov_Flask\static\js\" />
+    <Folder Include="NahravacSlov_Flask\templates\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="NahravacSlov_Flask\static\css\base.css" />
+    <Content Include="NahravacSlov_Flask\static\css\buttons.css" />
+    <Content Include="NahravacSlov_Flask\static\css\content.css" />
+    <Content Include="NahravacSlov_Flask\static\img\mic128.png" />
+    <Content Include="NahravacSlov_Flask\static\img\save.svg" />
+    <Content Include="NahravacSlov_Flask\templates\index.html" />
+    <Content Include="NahravacSlov_Flask\static\js\audio-display.js" />
+    <Content Include="NahravacSlov_Flask\static\js\audio-input.js" />
+    <Content Include="NahravacSlov_Flask\static\js\audio-player.js" />
+    <Content Include="NahravacSlov_Flask\static\js\audio-recorder-worker.js" />
+    <Content Include="NahravacSlov_Flask\static\js\audio-recorder.js" />
+    <Content Include="NahravacSlov_Flask\static\js\audiodisplay.js" />
+    <Content Include="NahravacSlov_Flask\static\js\init.js" />
+    <Content Include="NahravacSlov_Flask\static\js\main.js" />
+    <Content Include="NahravacSlov_Flask\static\js\nahravac-kroky.js" />
+    <Content Include="NahravacSlov_Flask\static\js\nahravac.js" />
+    <Content Include="NahravacSlov_Flask\static\js\recorder.js" />
+    <Content Include="NahravacSlov_Flask\static\js\recorderWorker.js" />
+    <Content Include="NahravacSlov_Flask\static\js\upload.js" />
+    <Content Include="requirements.txt" />
+    <Content Include="NahravacSlov_Flask\static\css\site.css" />
+    <Content Include="NahravacSlov_Flask\templates\about.html" />
+    <Content Include="NahravacSlov_Flask\templates\contact.html" />
+    <Content Include="NahravacSlov_Flask\templates\layout.html" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.Web.targets" />
+  <!-- Specify pre- and post-build commands in the BeforeBuild and 
+       AfterBuild targets below. -->
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <AutoAssignPort>True</AutoAssignPort>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://localhost</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}" User="">
+        <WebProjectProperties>
+          <StartPageUrl>
+          </StartPageUrl>
+          <StartAction>CurrentPage</StartAction>
+          <AspNetDebugging>True</AspNetDebugging>
+          <SilverlightDebugging>False</SilverlightDebugging>
+          <NativeDebugging>False</NativeDebugging>
+          <SQLDebugging>False</SQLDebugging>
+          <ExternalProgram>
+          </ExternalProgram>
+          <StartExternalURL>
+          </StartExternalURL>
+          <StartCmdLineArguments>
+          </StartCmdLineArguments>
+          <StartWorkingDirectory>
+          </StartWorkingDirectory>
+          <EnableENC>False</EnableENC>
+          <AlwaysStartWebServerOnDebug>False</AlwaysStartWebServerOnDebug>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>
