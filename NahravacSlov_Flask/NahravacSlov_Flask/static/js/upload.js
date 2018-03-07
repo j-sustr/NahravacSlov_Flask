@@ -2,7 +2,7 @@
 //const $SCRIPT_ROOT = request.script_root|tojson|safe;
 const $SCRIPT_ROOT = '';
 
-function postAudioFile(blob, filename) {
+function uploadAudioFile(blob, filename) {
 
     const fd = new FormData();
 
@@ -11,7 +11,7 @@ function postAudioFile(blob, filename) {
     fd.append("var", "testvar");
 
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", '/_save_rec', true);
+    xhr.open("POST", '/_upload_rec', true);
 
     //Send the proper header information along with the request
     //xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -33,6 +33,27 @@ function setupDownload(blob, filename) {
     link.href = url;
     link.download = filename || 'output.wav';
 }
+
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+
+
+
+//,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 
 
 function postAudioData(data) {

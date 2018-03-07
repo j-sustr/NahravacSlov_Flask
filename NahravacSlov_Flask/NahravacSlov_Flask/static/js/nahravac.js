@@ -82,7 +82,7 @@ function nahravaniDokonceno(buffers) {
 }
 
 function doneEncoding(blob) {
-    postAudioFile(blob, "myRecording" + ((recIndex < 10) ? "0" : "") + recIndex + ".wav");
+    uploadAudioFile(blob, "myRecording" + ((recIndex < 10) ? "0" : "") + recIndex + ".wav");
     setupDownload(blob, "myRecording" + ((recIndex < 10) ? "0" : "") + recIndex + ".wav")
     recIndex++;
 }
@@ -135,7 +135,7 @@ function btnPlay_click() {
     zmenitStavTlacitkaPlay('glowing');
     btnOpravitNahravku.style.visibility = 'hidden';
     
-    if (audioRecorder.buffers) { 
+    if (audioRecorder.buffers) {
         audioPlayer.play(audioRecorder.buffers[0], VZORKOVACI_FREKVENCE);
     } else {
         prehravaniDokonceno();
