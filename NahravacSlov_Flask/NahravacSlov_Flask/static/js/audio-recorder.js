@@ -26,7 +26,7 @@ class AudioRecorder
         });
 
         this._buffers = null;
-        this._resampledBuffers = null;
+        //this._resampledBuffers = null;
 
         //..............................
         this._recording = false;
@@ -89,7 +89,7 @@ class AudioRecorder
                 this._buffers = data;
                 if (this._ctx.sampleRate !== this._targetSampleRate) { // resampling buffers 
                     this._resample(data, data.length, data[0].length, this._ctx.sampleRate, this._targetSampleRate, resampledBuffers => {
-                        this._resampledBuffers = resampledBuffers;
+                        this._buffers = resampledBuffers;
                         this._currCallback(resampledBuffers);
                     });
                     return;
@@ -123,9 +123,9 @@ class AudioRecorder
         return this._buffers;
     }
 
-    get resampledBuffers() {
-        return this._resampledBuffers;
-    }
+    //get resampledBuffers() {
+    //    return this._resampledBuffers;
+    //}
 
     // getBuffers(cb) 
     // {

@@ -66,18 +66,27 @@ function nahravaniDokonceno(buffers) {
     probihaAkce = false;
     buffer = buffers[0];
 
-    
-
     console.log('nahravka dokoncena');
 
-    validaceNahravky(buffer);
-    buffer = float32toInt16Array(buffer);
+    if (true || validaceNahravky(buffer)) {
+        nahravkaOK = true;
+        //buffer = float32toInt16Array(buffer);
 
-    console.log(buffer);
+        //postAudioData(buffer);
+        audioRecorder.exportMonoWAV(doneEncoding);
+    }
+    else nahravkaOK = false;
 
     //setupDownload(blob, "myRecording" + ((recIndex < 10) ? "0" : "") + recIndex + ".wav");   
     provestKrok(Krok.NAHRAVKA); //kontrola nahravky -> odeslat
 }
+
+function doneEncoding(blob) {
+    postAudioFile(blob, "myRecording" + ((recIndex < 10) ? "0" : "") + recIndex + ".wav");
+    setupDownload(blob, "myRecording" + ((recIndex < 10) ? "0" : "") + recIndex + ".wav")
+    recIndex++;
+}
+
 
 function prehravaniDokonceno() {
     probihaAkce = false;
@@ -126,8 +135,10 @@ function btnPlay_click() {
     zmenitStavTlacitkaPlay('glowing');
     btnOpravitNahravku.style.visibility = 'hidden';
     
-    if (audioRecorder.resampledBuffers) { // play resampledBuffers
-        audioPlayer.play(audioRecorder.resampledBuffers[0], VZORKOVACI_FREKVENCE);
+    if (audioRecorder.buffers) { 
+        audioPlayer.play(audioRecorder.buffers[0], VZORKOVACI_FREKVENCE);
+    } else {
+        prehravaniDokonceno();
     }
 }
 
@@ -157,14 +168,8 @@ function zmenitStavTlacitka(btnClasses, stav) {
 }
 
 function validaceNahravky(buffer) {
-    // nahravkaOK = true;
-    // return;
-
-    if (energieSignalu(buffer) < MIN_ENERGIE_NAHRAVKY) {
-        nahravkaOK = false;
-    } else {
-        nahravkaOK = true;
-    }
+    if (energieSignalu(buffer) < MIN_ENERGIE_NAHRAVKY) return false;
+    return true;
 }
 
 function energieSignalu(sig) {

@@ -61,14 +61,15 @@ button.disabled {
 
 
 .link {
+    font-size: 18px;
     cursor: pointer;
     color: #505050;
     font-style: italic;
+    text-decoration: underline;
 }
 
 .link:hover {
-    text-decoration: underline;
-    opacity: 0.8;
+    opacity: 0.5;
 }
 
 
