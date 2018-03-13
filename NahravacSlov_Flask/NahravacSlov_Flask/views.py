@@ -5,6 +5,8 @@ import os
 from datetime import datetime
 from flask import render_template, request, jsonify, make_response
 from NahravacSlov_Flask import app
+
+
 #import json
 #import base64
 #import struct
@@ -16,7 +18,7 @@ def home():
     """Renders the home page."""
 
     userID = request.cookies.get('userID')
-    print('userID: '.format(userID))
+    print('userID: {}'.format(userID))
 
     if not userID: 
         print('new user')
@@ -44,13 +46,19 @@ def save_rec():
     print(request.remote_addr)
 
     #request.get_data()
-    print(request.form)
+
+    userID = request.form['userID'].zfill(4)
 
     file = request.files['audio_file']
     filename = file.filename
-    print(file)
+    
+    osoba_dir = os.path.join(app.config['UPLOAD_FOLDER'], userID)
 
-    file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+    print(osoba_dir)
+
+    if not os.path.isdir(osoba_dir): os.mkdir(osoba_dir)
+
+    file.save(os.path.join(osoba_dir, filename))
 
 
     #app.logger.debug("Data looks like " + data)

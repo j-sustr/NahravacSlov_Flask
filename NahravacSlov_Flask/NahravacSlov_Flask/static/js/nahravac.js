@@ -82,8 +82,10 @@ function nahravaniDokonceno(buffers) {
 }
 
 function doneEncoding(blob) {
-    uploadAudioFile(blob, "myRecording" + ((recIndex < 10) ? "0" : "") + recIndex + ".wav");
-    setupDownload(blob, "myRecording" + ((recIndex < 10) ? "0" : "") + recIndex + ".wav")
+    fname = `c${idxSlova}_p${zeroFill(getCookie('userID'), 4)}_s${zeroFill(idxSady, 2)}.wav`;
+
+    uploadAudioFile(blob, fname);
+    setupDownload(blob, fname);
     recIndex++;
 }
 

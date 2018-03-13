@@ -8,7 +8,7 @@ function uploadAudioFile(blob, filename) {
 
     console.log(blob)
     fd.append("audio_file", blob, filename);
-    fd.append("var", "testvar");
+    fd.append("userID", getCookie("userID"));
 
     var xhr = new XMLHttpRequest();
     xhr.open("POST", '/_upload_rec', true);
@@ -50,6 +50,14 @@ function getCookie(cname) {
     return "";
 }
 
+
+function zeroFill(number, width) {
+    width -= number.toString().length;
+    if (width > 0) {
+        return new Array(width + (/\./.test(number) ? 2 : 1)).join('0') + number;
+    }
+    return number + ""; // always return a string
+}
 
 
 
