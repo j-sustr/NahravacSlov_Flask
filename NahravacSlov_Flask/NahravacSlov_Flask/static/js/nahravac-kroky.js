@@ -25,9 +25,12 @@ function start() {
     btnOpravitNahravku.style.visibility = 'hidden';
     display.style.visibility = 'hidden';
 
+    idxSlova = 0;
+    idxSady = 0;
+
     pokracovat = validaceKroku = pohlaviChecked = konecSady = opravaNahravky = false;
 
-    aktualniKrok = Krok.POKYNY;
+    //aktualniKrok = Krok.POKYNY;
     provestKrok();
 }
 
@@ -103,7 +106,7 @@ function _krokPokyny() {
     content.innerHTML = `<p>V následujícím kroku se zobrazí slovo 
     požadované k vyslovení (číslovky 0 až 9) a také tlačítko "REC", 
     po jehož stisknutí se spustí nahrávání daného slova.</p>
-    <p>Podmínkou je, že celá sada slov se musí nahrát ${POCET_SAD}&nbsp;-&nbsp;krát.
+    <p>Je potřeba, aby se celá sada slov nahrála ${POCET_SAD}&nbsp;-&nbsp;krát.
     (celkem ${POCET_SAD * sadaSlov.length} nahrávek)</p>`;
 
     validaceKroku = true;

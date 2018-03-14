@@ -2,13 +2,13 @@
 //const $SCRIPT_ROOT = request.script_root|tojson|safe;
 const $SCRIPT_ROOT = '';
 
-function uploadAudioFile(blob, filename) {
+function uploadAudioFile(blob, filename, userID) {
 
     const fd = new FormData();
 
-    console.log(blob)
+    //console.log(blob)
     fd.append("audio_file", blob, filename);
-    fd.append("userID", getCookie("userID"));
+    fd.append("userID", userID);
 
     var xhr = new XMLHttpRequest();
     xhr.open("POST", '/_upload_rec', true);

@@ -43,18 +43,18 @@ def save_rec():
     #data = json.loads(request.args.get('data', 0, type=str))
     #data = request.args.get('data', 0, type=str)
 
-    print(request.remote_addr)
+    #print(request.remote_addr)
 
     #request.get_data()
 
-    userID = request.form['userID'].zfill(4)
+    userID = request.form['userID'] #.zfill(4)
 
     file = request.files['audio_file']
     filename = file.filename
     
     osoba_dir = os.path.join(app.config['UPLOAD_FOLDER'], userID)
 
-    print(osoba_dir)
+    #print(osoba_dir)
 
     if not os.path.isdir(osoba_dir): os.mkdir(osoba_dir)
 

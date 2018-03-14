@@ -6,7 +6,7 @@
 const DELKA_NAHRAVKY = 2; //s
 const VZORKOVACI_FREKVENCE = 16000; //Hz
 const ROZLISENI = 16; // bit
-const POCET_SAD = 1;
+const POCET_SAD = 5;
 const MIN_ENERGIE_NAHRAVKY = 1;
 
 const audioCtx = new AudioContext();
@@ -68,25 +68,29 @@ function nahravaniDokonceno(buffers) {
 
     console.log('nahravka dokoncena');
 
-    if (true || validaceNahravky(buffer)) {
+    if (validaceNahravky(buffer)) {
         nahravkaOK = true;
         //buffer = float32toInt16Array(buffer);
-
         //postAudioData(buffer);
+
         audioRecorder.exportMonoWAV(doneEncoding);
     }
-    else nahravkaOK = false;
-
-    //setupDownload(blob, "myRecording" + ((recIndex < 10) ? "0" : "") + recIndex + ".wav");   
-    provestKrok(Krok.NAHRAVKA); //kontrola nahravky -> odeslat
+    else {
+        nahravkaOK = false; 
+        provestKrok(Krok.NAHRAVKA);
+    }
 }
 
 function doneEncoding(blob) {
-    fname = `c${idxSlova}_p${zeroFill(getCookie('userID'), 4)}_s${zeroFill(idxSady, 2)}.wav`;
+    userID = zeroFill(getCookie('userID'), 4);
 
-    uploadAudioFile(blob, fname);
-    setupDownload(blob, fname);
+    fname = `c${idxSlova}_p${userID}_s${zeroFill(idxSady, 2)}.wav`;
+
+    uploadAudioFile(blob, fname, userID + '_' + pohlavi);
+    //setupDownload(blob, fname);
     recIndex++;
+
+    provestKrok(Krok.NAHRAVKA); //kontrola nahravky -> odeslat
 }
 
 
