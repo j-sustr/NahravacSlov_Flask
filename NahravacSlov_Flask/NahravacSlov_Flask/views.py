@@ -17,14 +17,14 @@ from NahravacSlov_Flask import app
 def home():
     """Renders the home page."""
 
-    userID = request.cookies.get('userID')
-    print('userID: {}'.format(userID))
+    #userID = request.cookies.get('userID')
+    #print('userID: {}'.format(userID))
+    #if not userID: 
+    #   print('new user')
 
-    if not userID: 
-        print('new user')
-        resp = make_response(render_template('index.html'))
-        resp.set_cookie('userID', str(getNewUserId()))
-        return resp
+    resp = make_response(render_template('index.html')) # vice lidi z jednoho zarizeni
+    resp.set_cookie('userID', str(getNewUserId()))
+    return resp
     
     return render_template('index.html')
 
