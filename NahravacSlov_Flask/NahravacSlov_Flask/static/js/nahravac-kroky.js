@@ -89,8 +89,8 @@ function _krokMik() {
     initAudio();
 
     content.innerHTML = `<p>Pro nahrávání je nutné se aby Vaše zařízení mělo dostupný mikrofon. 
-                        Pokud je toto splněno a prohlížeč zobrazil výzvu, tak ji potvrďte.</p>
-                        <p>Dále se ujistěte, že nahrávání nebude rušit hluk.</p>`;
+                        Pokud je toto splněno, potvrďte dotaz, který zobrazil prohlížeč.</p>
+                        <p>Dále se ujistěte, že nahrávání nebude rušeno hlukem.</p>`;
 
     validaceKroku = true;
 }
