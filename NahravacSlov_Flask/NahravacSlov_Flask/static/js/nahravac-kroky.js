@@ -73,7 +73,7 @@ function _krokUvod() {
     }
     content.innerHTML = `<p>Vítejte v aplikaci pro nahrávání slov.</p>
     <p>Účel této aplikace je vytvořit nahrávky Vašich slov, které 
-    budou sloužit jako data pro školní projekt.</p>`;
+    budou sloužit jako data pro školní projekt, který je zaměřen na výzkum zpracování řeči.</p>`;
     
     validaceKroku = true;
 }
