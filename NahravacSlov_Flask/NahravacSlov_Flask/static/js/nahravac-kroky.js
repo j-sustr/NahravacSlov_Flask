@@ -73,7 +73,7 @@ function _krokUvod() {
     }
     content.innerHTML = `<p>Vítejte v aplikaci pro nahrávání slov.</p>
     <p>Účel této aplikace je vytvořit nahrávky Vašich slov, které 
-    budou sloužit jako data pro školní projekt, který je zaměřen na výzkum zpracování řeči.</p>`;
+    budou sloužit jako data pro školní projekt zaměřený na výzkum zpracování řeči.</p>`;
     
     validaceKroku = true;
 }
@@ -89,7 +89,7 @@ function _krokMik() {
     initAudio();
 
     content.innerHTML = `<p>Pro nahrávání je nutné se aby Vaše zařízení mělo dostupný mikrofon. 
-                        Pokud je toto splněno, potvrďte dotaz, který zobrazil prohlížeč.</p>
+                        Pokud je toto splněno, potvrďte dotaz, který nyní zobrazil prohlížeč.</p>
                         <p>Dále se ujistěte, že nahrávání nebude rušeno hlukem.</p>`;
 
     validaceKroku = true;
