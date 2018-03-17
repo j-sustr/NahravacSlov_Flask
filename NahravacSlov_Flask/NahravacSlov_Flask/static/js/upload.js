@@ -27,6 +27,21 @@ function uploadAudioFile(blob, filename, userID) {
 }
 
 
+function runDownload(blob, filename) {
+    const url = (window.URL || window.webkitURL).createObjectURL(blob);
+    const element = document.createElement('a');
+    element.setAttribute('href', url);
+    element.setAttribute('download', filename);
+
+    element.style.display = 'none';
+    document.body.appendChild(element);
+
+    element.click();
+
+    document.body.removeChild(element);
+
+}
+
 function setupDownload(blob, filename) {
     const url = (window.URL || window.webkitURL).createObjectURL(blob);
     const link = document.getElementById("save"); //  DOM !!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -48,6 +63,13 @@ function getCookie(cname) {
         }
     }
     return "";
+}
+
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    var expires = "expires=" + d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
 
 

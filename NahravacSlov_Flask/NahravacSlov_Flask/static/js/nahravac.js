@@ -64,7 +64,7 @@ start();
 
 function nahravaniDokonceno(buffers) {
     probihaAkce = false;
-    buffer = buffers[0];
+    const buffer = buffers[0];
 
     console.log('nahravka dokoncena');
 
@@ -82,12 +82,12 @@ function nahravaniDokonceno(buffers) {
 }
 
 function doneEncoding(blob) {
-    userID = zeroFill(getCookie('userID'), 4);
+    const userID = zeroFill(getCookie('userID'), 4);
 
-    fname = `c${idxSlova}_p${userID}_s${zeroFill(idxSady, 2)}.wav`;
+    const fname = `c${idxSlova}_p${userID}_s${zeroFill(idxSady, 2)}.wav`;
 
-    uploadAudioFile(blob, fname, userID + '_' + pohlavi);
-    //setupDownload(blob, fname);
+    //uploadAudioFile(blob, fname, userID + '_' + pohlavi);
+    runDownload(blob, fname);
     recIndex++;
 
     provestKrok(Krok.NAHRAVKA); //kontrola nahravky -> odeslat
@@ -186,4 +186,10 @@ function energieSignalu(sig) {
     }
     //console.log(energie);
     return energie;
+}
+
+function btnReset_click() {
+    const userID = parseInt(getCookie('userID'));
+    setCookie('userID', userID + 1, 10);
+    start()
 }

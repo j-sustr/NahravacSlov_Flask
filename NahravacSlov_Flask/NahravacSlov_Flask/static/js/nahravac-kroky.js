@@ -30,7 +30,9 @@ function start() {
 
     pokracovat = validaceKroku = pohlaviChecked = konecSady = opravaNahravky = false;
 
-    //aktualniKrok = Krok.POKYNY;
+    zmenitStavTlacitkaNext('enabled');
+
+    aktualniKrok = Krok.UVOD;
     provestKrok();
 }
 
