@@ -1,7 +1,7 @@
 
 const sadaSlov = [ "nula", "jedna", "dva" , "tři", "čtyři", "pět", "šest", "sedm", "osm", "devět"];
 
-const Krok = { UVOD: 0, POHLAVI: 1, POKYNY: 2, NAHRAVKA: 3, DOKONCENI_SADY: 4, KONEC: 5 }
+const Krok = { UVOD: 0, MIK: 1, POHLAVI: 2, POKYNY: 3, NAHRAVKA: 4, DOKONCENI_SADY: 5, KONEC: 6 }
 
 let idxSlova = 0;
 let idxSady = 0;
@@ -39,6 +39,9 @@ function provestKrok() {
         case Krok.UVOD:
             _krokUvod();
             break;
+        case Krok.MIK:
+            _krokMik();
+            break;
         case Krok.POHLAVI:
             _krokPohlavi();
             break;
@@ -64,14 +67,31 @@ function dalsiKrok(krok) {
 }
 
 function _krokUvod() {
-    if(validaceKroku) {
-        dalsiKrok(Krok.POHLAVI);
+    if (validaceKroku) {
+        dalsiKrok(Krok.MIK);
         return;
     }
     content.innerHTML = `<p>Vítejte v aplikaci pro nahrávání slov.</p>
     <p>Účel této aplikace je vytvořit nahrávky Vašich slov, které 
     budou sloužit jako data pro školní projekt.</p>`;
     
+    validaceKroku = true;
+}
+
+function _krokMik() {
+    if (validaceKroku) {
+        if (audioInput) dalsiKrok(Krok.POHLAVI);
+        return;
+    }
+
+    zmenitStavTlacitkaNext('disabled');
+
+    initAudio();
+
+    content.innerHTML = `<p>Pro nahrávání je nutné se aby Vaše zařízení mělo dostupný mikrofon. 
+                        Pokud je toto splněno a prohlížeč zobrazil výzvu, tak ji potvrďte.</p>
+                        <p>Dále se ujistěte, že nahrávání nebude rušit hluk.</p>`;
+
     validaceKroku = true;
 }
 
@@ -82,6 +102,8 @@ function _krokPohlavi() {
         }
         return;
     }
+
+    zmenitStavTlacitkaNext('disabled');
 
     content.innerHTML = `<p>Vyberte prosím své pohlaví.</p><br>
     <div style="margin: 20px;">
@@ -118,7 +140,6 @@ function _krokNahravka() {
             opravaNahravky = false;
             idxSlova++;
             if (idxSlova >= sadaSlov.length) {
-                btnOpravitNahravku.style.visibility = 'hidden';
                 dalsiKrok(Krok.DOKONCENI_SADY);
             } 
             else dalsiKrok(Krok.NAHRAVKA);
@@ -155,21 +176,21 @@ function _krokDokonceniSady() {
         return
     }
 
-    if(validaceKroku) {
+    if (validaceKroku) {
+        idxSlova = 0;
+        idxSady++;
         dalsiKrok(Krok.NAHRAVKA);
         return;
     }
 
-    idxSlova = 0;
-    idxSady++;
+    btnOpravitNahravku.style.visibility = 'visible';
+    zmenitStavTlacitkaPlay('enabled');
 
-    //disable rec a play
     zmenitStavTlacitkaRec('disabled');
-    zmenitStavTlacitkaPlay('disabled');
     zmenitStavTlacitkaNext('enabled');
 
     content.innerHTML = `<p class="text-center">Sada byla dokončena.<br>Můžete pokračovat na další.</p>
-    <p class="text-center">Počet sad:  ${idxSady} z ${POCET_SAD}</p>`
+    <p class="text-center">Počet sad:  ${idxSady + 1} z ${POCET_SAD}</p>`
 
     validaceKroku = true;
 }

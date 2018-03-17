@@ -16,7 +16,7 @@
     margin: 100px auto;
     /* font-family: Raleway; */
     padding: 40px;
-    width: 70%;
+    /*width: 70%;*/
     min-width: 300px;
     max-width: 600px;
     min-height: 400px;
@@ -102,3 +102,19 @@
     margin-right: 30px;
     height: 50px;
   }
+
+@media screen and (max-width: 600px) {
+    #main-panel {
+        width: 100%;
+        height: 80vh;
+        margin: 0;
+    }
+
+    #display-container {
+        margin-bottom: 150px;
+    }
+
+    #top-ctrls {
+        margin-bottom: 80px;
+    }
+}

@@ -1,7 +1,4 @@
 
-/*
-    BUFFERS -> vlastnost
-*/
 
 const DELKA_NAHRAVKY = 2; //s
 const VZORKOVACI_FREKVENCE = 16000; //Hz
@@ -37,26 +34,29 @@ const zmenitStavTlacitkaNext = (stav) => zmenitStavTlacitka(btnNextClasses, stav
 const tlacikoJeEnabled = (btnClasses) => btnClasses.contains('enabled');
 
 
-const recorderCfg = {
-    targetSampleRate: VZORKOVACI_FREKVENCE,
-    timerEnabled: true,
-    timerValue: DELKA_NAHRAVKY,
-    timerStopCallback: nahravaniDokonceno,
+function initAudio() {
+
+    const recorderCfg = {
+        targetSampleRate: VZORKOVACI_FREKVENCE,
+        timerEnabled: true,
+        timerValue: DELKA_NAHRAVKY,
+        timerStopCallback: nahravaniDokonceno,
+    }
+
+    navigator.mediaDevices.getUserMedia({ audio: true })
+        .then(function (stream) {
+            audioInput = new AudioInput(audioCtx, stream);
+            audioRecorder = new AudioRecorder(audioInput.src, recorderCfg);
+            audioDisplay = new AudioRecordingDisplay(audioInput.src, display, DELKA_NAHRAVKY);
+            //audioBufferDisplay = new AudioBufferDisplay(document.getElementById('wavedisplay'));
+            //audioAnalyzerDisplay = new AudioAnalyserDisplay(audioInput.src, document.getElementById('display'));
+            zmenitStavTlacitkaNext('enabled');
+        })
+        .catch(function (err) {
+            alert('Chyba! Neni dostupne zarizeni pro zaznam zvuku.'); // ohlasit chybu (fullscreen)
+            console.log(err);
+        });
 }
-
-
-navigator.mediaDevices.getUserMedia({ audio: true })
-.then(function(stream) {
-    audioInput = new AudioInput(audioCtx, stream);
-    audioRecorder = new AudioRecorder(audioInput.src, recorderCfg);
-    audioDisplay = new AudioRecordingDisplay(audioInput.src, display, DELKA_NAHRAVKY);
-    //audioBufferDisplay = new AudioBufferDisplay(document.getElementById('wavedisplay'));
-    //audioAnalyzerDisplay = new AudioAnalyserDisplay(audioInput.src, document.getElementById('display'));
-})
-.catch(function(err) {
-    alert('Error getting audio'); // ohlasit chybu (fullscreen)
-    console.log(err);
-});
 
 start();
 
@@ -93,15 +93,6 @@ function doneEncoding(blob) {
     provestKrok(Krok.NAHRAVKA); //kontrola nahravky -> odeslat
 }
 
-
-function prehravaniDokonceno() {
-    probihaAkce = false;
-
-    zmenitStavTlacitkaRec('enabled');
-    zmenitStavTlacitkaPlay('enabled');
-    btnOpravitNahravku.style.visibility = 'visible';
-}
-
 // function gotBuffers(buffers) { // the ONLY time gotBuffers is called is right after a new recording is completed 
 //     //audioBufferDisplay.draw(buffers[0]);
 //     console.log(buffers);
@@ -136,16 +127,21 @@ function btnRec_click() {
 function btnPlay_click() {
     if (!tlacikoJeEnabled(btnPlayClasses)) return;
     if (probihaAkce) return;
+    if (!audioRecorder.buffers) return;
     probihaAkce = true;
     zmenitStavTlacitkaRec('disabled');
     zmenitStavTlacitkaPlay('glowing');
     btnOpravitNahravku.style.visibility = 'hidden';
     
-    if (audioRecorder.buffers) {
-        audioPlayer.play(audioRecorder.buffers[0], VZORKOVACI_FREKVENCE);
-    } else {
-        prehravaniDokonceno();
-    }
+    audioPlayer.play(audioRecorder.buffers[0], VZORKOVACI_FREKVENCE);
+}
+
+function prehravaniDokonceno() {
+    probihaAkce = false;
+
+    if (aktualniKrok === Krok.NAHRAVKA) zmenitStavTlacitkaRec('enabled');
+    zmenitStavTlacitkaPlay('enabled');
+    btnOpravitNahravku.style.visibility = 'visible';
 }
 
 function btnOpravitNahravku_click() {
@@ -158,11 +154,13 @@ function btnOpravitNahravku_click() {
 function pohlaviZena_checked() {
     pohlaviChecked = true;
     pohlavi = 'Z';
+    zmenitStavTlacitkaNext('enabled');
 }
 
 function pohlaviMuz_checked() {
     pohlaviChecked = true;
     pohlavi = 'M';
+    zmenitStavTlacitkaNext('enabled');
 }
 
 function zmenitStavTlacitka(btnClasses, stav) {
@@ -174,6 +172,7 @@ function zmenitStavTlacitka(btnClasses, stav) {
 }
 
 function validaceNahravky(buffer) {
+    //return true; // DEBUG
     if (energieSignalu(buffer) < MIN_ENERGIE_NAHRAVKY) return false;
     return true;
 }
