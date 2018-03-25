@@ -15,7 +15,7 @@
 </head>
 
 <body>
-    <button onclick="btnReset_click()" style="color:black; background-color:grey">Reset</button>
+    <button id="btnReset" style="display:none; color:black; background-color:grey;" onclick="btnReset_click()">Reset</button>
     <!--<div class="alert"></div>--><!--<strong>Chyba!</strong>-->  
     <div id="main-panel">
         <div id="content"></div>
@@ -41,6 +41,18 @@
     </div>
 
     <!--<a id="save">Save</a>-->
+
+    <script>
+        const DEBUG = true;
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const OFFLINE = urlParams.has('offline');
+
+        if (OFFLINE) {
+            console.log('OFFLINE')
+            btnReset.style.display = "inline";
+        };
+    </script>
 
     <script src="/static/js/init.js"></script>
     <script src="/static/js/audio-player.js"></script>

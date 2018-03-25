@@ -43,6 +43,7 @@
     <Folder Include="NahravacSlov_Flask\templates\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="mail_pswd.txt" />
     <Content Include="NahravacSlov_Flask\static\css\base.css" />
     <Content Include="NahravacSlov_Flask\static\css\buttons.css" />
     <Content Include="NahravacSlov_Flask\static\css\content.css" />

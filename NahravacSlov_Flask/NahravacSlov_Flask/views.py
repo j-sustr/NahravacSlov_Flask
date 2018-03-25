@@ -4,8 +4,9 @@ Routes and views for the flask application.
 import os
 from datetime import datetime
 from flask import render_template, request, jsonify, make_response
-from NahravacSlov_Flask import app
+from NahravacSlov_Flask import app, mail
 
+from flask_mail import Message
 
 #import json
 #import base64
@@ -24,15 +25,18 @@ def home():
 
     resp = make_response(render_template('index.html')) # vice lidi z jednoho zarizeni
     resp.set_cookie('userID', str(getNewUserId()))
-    return resp
-    
-    return render_template('index.html')
 
     #return render_template(
     #    'index.html',
     #    #title='Home Page',
     #    #year=datetime.now().year,
     #)
+
+    return resp
+    #return render_template('index.html')
+
+
+
 
 @app.route('/_upload_rec', methods=['GET', 'POST'])
 def save_rec():
@@ -67,6 +71,28 @@ def save_rec():
     return jsonify(result='ok')
 
 
+@app.route('/_end_rec', methods=['GET', 'POST'])
+def end_rec():
+    userID = request.form['userID']
+    
+    osoba_dir = os.path.join(app.config['UPLOAD_FOLDER'], userID)
+    
+    msg = Message("Nahravky " + userID, recipients=["jan.sustr@tul.cz"])
+    msg.body = ""
+    
+    for root, dirs, files in os.walk(osoba_dir):
+        for fname in files:
+            with open(os.path.join(root, fname), 'rb') as fp:
+                msg.attach(fname, "audio/wav", fp.read())
+
+    mail.send(msg)
+    
+    print('mail sent')
+
+    return jsonify(result='ok')
+
+
+
 def getNewUserId():
     #try:
     #    f = open("test.txt",encoding = 'utf-8')
@@ -91,4 +117,6 @@ def getNewUserId():
         
 
     return id
+
+
 

@@ -1,10 +1,11 @@
 
-
 const DELKA_NAHRAVKY = 2; //s
 const VZORKOVACI_FREKVENCE = 16000; //Hz
 const ROZLISENI = 16; // bit
-const POCET_SAD = 5;
+let POCET_SAD = 5;
 const MIN_ENERGIE_NAHRAVKY = 1;
+
+if (DEBUG) POCET_SAD = 1;
 
 const audioCtx = new AudioContext();
 const audioPlayer = new AudioPlayer(audioCtx, prehravaniDokonceno);
@@ -83,11 +84,11 @@ function nahravaniDokonceno(buffers) {
 
 function doneEncoding(blob) {
     const userID = zeroFill(getCookie('userID'), 4);
-
     const fname = `c${idxSlova}_p${userID}_s${zeroFill(idxSady, 2)}.wav`;
 
-    //uploadAudioFile(blob, fname, userID + '_' + pohlavi);
-    runDownload(blob, fname);
+    if (OFFLINE) runDownload(blob, fname);
+    else uploadAudioFile(blob, fname, userID + '_' + pohlavi);
+
     recIndex++;
 
     provestKrok(Krok.NAHRAVKA); //kontrola nahravky -> odeslat
@@ -172,7 +173,8 @@ function zmenitStavTlacitka(btnClasses, stav) {
 }
 
 function validaceNahravky(buffer) {
-    //return true; // DEBUG
+    if (DEBUG) return true; // DEBUG
+
     if (energieSignalu(buffer) < MIN_ENERGIE_NAHRAVKY) return false;
     return true;
 }

@@ -1,5 +1,7 @@
 
-const sadaSlov = [ "nula", "jedna", "dva" , "tři", "čtyři", "pět", "šest", "sedm", "osm", "devět"];
+let sadaSlov = ["nula", "jedna", "dva", "tři", "čtyři", "pět", "šest", "sedm", "osm", "devět"];
+
+if (DEBUG) sadaSlov = ["nula", "jedna", "dva"];
 
 const Krok = { UVOD: 0, MIK: 1, POHLAVI: 2, POKYNY: 3, NAHRAVKA: 4, DOKONCENI_SADY: 5, KONEC: 6 }
 
@@ -203,4 +205,6 @@ function _krokKonec() {
     display.style.visibility = 'hidden';
 
     content.innerHTML = `<p>Všechny sady byly dokončeny.</p><p>Děkuji za spolupráci.</p>`;
+
+    notifyEnd(zeroFill(getCookie('userID'), 4) + '_' + pohlavi);
 }

@@ -26,6 +26,30 @@ function uploadAudioFile(blob, filename, userID) {
     xhr.send(fd);
 }
 
+function notifyEnd(userID) {
+
+    const fd = new FormData();
+
+    fd.append("userID", userID);
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", '/_end_rec', true);
+
+    //Send the proper header information along with the request
+    //xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+    xhr.onreadystatechange = function () {//Call a function when the state changes.
+        if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
+            // Request finished. Do processing here.
+            console.log(JSON.parse(this.responseText).result);
+        }
+    }
+
+    xhr.send(fd);
+}
+
+
+
 
 function runDownload(blob, filename) {
     const url = (window.URL || window.webkitURL).createObjectURL(blob);
