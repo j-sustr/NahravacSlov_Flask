@@ -5,7 +5,7 @@ const ROZLISENI = 16; // bit
 let POCET_SAD = 5;
 const MIN_ENERGIE_NAHRAVKY = 1;
 
-if (DEBUG) POCET_SAD = 1;
+if (DEBUG) POCET_SAD = 2;
 
 const audioCtx = new AudioContext();
 const audioPlayer = new AudioPlayer(audioCtx, prehravaniDokonceno);

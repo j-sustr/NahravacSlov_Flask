@@ -77,17 +77,17 @@ def end_rec():
     
     osoba_dir = os.path.join(app.config['UPLOAD_FOLDER'], userID)
     
-    msg = Message("Nahravky " + userID, recipients=["jan.sustr@tul.cz"])
-    msg.body = ""
+    #msg = Message("Nahravky " + userID, recipients=["jan.sustr@tul.cz"])
+    #msg.body = ""
     
-    for root, dirs, files in os.walk(osoba_dir):
-        for fname in files:
-            with open(os.path.join(root, fname), 'rb') as fp:
-                msg.attach(fname, "audio/wav", fp.read())
+    #for root, dirs, files in os.walk(osoba_dir):
+    #    for fname in files:
+    #        with open(os.path.join(root, fname), 'rb') as fp:
+    #            msg.attach(fname, "audio/wav", fp.read())
 
-    mail.send(msg)
+    #mail.send(msg)
     
-    print('mail sent')
+    #print('mail sent')
 
     return jsonify(result='ok')
 

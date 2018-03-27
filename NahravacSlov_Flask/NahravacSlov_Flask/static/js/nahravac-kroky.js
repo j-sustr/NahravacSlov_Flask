@@ -175,15 +175,16 @@ function _krokNahravka() {
 }
 
 function _krokDokonceniSady() {
-    if (idxSady + 1 >= POCET_SAD) { 
-        dalsiKrok(Krok.KONEC);
-        return
-    }
 
     if (validaceKroku) {
         idxSlova = 0;
-        idxSady++;
-        dalsiKrok(Krok.NAHRAVKA);
+
+        if (idxSady + 1 >= POCET_SAD) {
+            dalsiKrok(Krok.KONEC);
+        } else {
+            idxSady++;
+            dalsiKrok(Krok.NAHRAVKA);
+        }
         return;
     }
 
@@ -200,6 +201,9 @@ function _krokDokonceniSady() {
 }
 
 function _krokKonec() {
+    zmenitStavTlacitkaNext('disabled');
+
+    btnOpravitNahravku.style.visibility = 'hidden';
     btnRec.style.visibility = 'hidden';
     btnPlay.style.visibility = 'hidden';
     display.style.visibility = 'hidden';

@@ -43,13 +43,17 @@
     <!--<a id="save">Save</a>-->
 
     <script>
-        const DEBUG = true;
-
         const urlParams = new URLSearchParams(window.location.search);
+
+        const DEBUG = urlParams.has('debug');
         const OFFLINE = urlParams.has('offline');
 
+        if (DEBUG) {
+            console.log('DEBUG MODE')
+        }
+
         if (OFFLINE) {
-            console.log('OFFLINE')
+            console.log('OFFLINE MODE')
             btnReset.style.display = "inline";
         };
     </script>
