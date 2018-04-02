@@ -3,6 +3,7 @@
 
 NahravacSlov_Flask/upload/*
 NahravacSlov_Flask/mail_pswd.txt
+NahravacSlov_Flask/new_id.txt
 
 # User-specific files
 *.suo

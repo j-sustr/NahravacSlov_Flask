@@ -4,7 +4,7 @@ Routes and views for the flask application.
 import os
 from datetime import datetime
 from flask import render_template, request, jsonify, make_response
-from NahravacSlov_Flask import app, mail
+from NahravacSlov_Flask import app #, mail
 
 from flask_mail import Message
 
