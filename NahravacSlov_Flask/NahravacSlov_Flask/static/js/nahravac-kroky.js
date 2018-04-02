@@ -92,7 +92,7 @@ function _krokMik() {
 
     initAudio();
 
-    nahravac_content.innerHTML = `<p>Pro nahrávání je nutné se aby Vaše zařízení mělo dostupný mikrofon. 
+    nahravac_content.innerHTML = `<p>Pro nahrávání je nutné, aby Vaše zařízení mělo dostupný mikrofon. 
                         Pokud je toto splněno, potvrďte dotaz, který nyní zobrazil prohlížeč.</p>
                         <p>Předtím než začnete, se prosím ujistěte, že nahrávání nebude rušeno hlukem.</p>`;
 
