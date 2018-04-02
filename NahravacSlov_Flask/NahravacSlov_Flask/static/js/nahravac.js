@@ -17,6 +17,7 @@ let recIndex = 0;
 // let probihaNahravani = false;
 let probihaAkce = false; // nahravani, prehravani
 
+const nahravac_content = document.getElementById('nahravac-content');
 const display = document.getElementById('display');
 const btnRec = document.getElementById('btnRec');
 const btnPlay = document.getElementById('btnPlay');

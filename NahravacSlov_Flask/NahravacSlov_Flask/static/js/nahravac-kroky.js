@@ -75,7 +75,7 @@ function _krokUvod() {
         dalsiKrok(Krok.MIK);
         return;
     }
-    content.innerHTML = `<p>Vítejte v aplikaci pro nahrávání slov.</p>
+    nahravac_content.innerHTML = `<p>Vítejte v aplikaci pro nahrávání slov.</p>
     <p>Účel této aplikace je vytvořit nahrávky Vašich slov, které 
     budou sloužit jako data pro školní projekt zaměřený na výzkum zpracování řeči.</p>`;
     
@@ -92,9 +92,9 @@ function _krokMik() {
 
     initAudio();
 
-    content.innerHTML = `<p>Pro nahrávání je nutné se aby Vaše zařízení mělo dostupný mikrofon. 
+    nahravac_content.innerHTML = `<p>Pro nahrávání je nutné se aby Vaše zařízení mělo dostupný mikrofon. 
                         Pokud je toto splněno, potvrďte dotaz, který nyní zobrazil prohlížeč.</p>
-                        <p>Dále se ujistěte, že nahrávání nebude rušeno hlukem.</p>`;
+                        <p>Předtím než začnete, se prosím ujistěte, že nahrávání nebude rušeno hlukem.</p>`;
 
     validaceKroku = true;
 }
@@ -109,7 +109,7 @@ function _krokPohlavi() {
 
     zmenitStavTlacitkaNext('disabled');
 
-    content.innerHTML = `<p>Vyberte prosím své pohlaví.</p><br>
+    nahravac_content.innerHTML = `<p>Vyberte prosím své pohlaví.</p><br>
     <div style="margin: 20px;">
         <p>
             <input type="radio" onclick="pohlaviMuz_checked();" id="genderChoiceM" name="gender">
@@ -129,10 +129,10 @@ function _krokPokyny() {
         return;
     }
 
-    content.innerHTML = `<p>V následujícím kroku se zobrazí slovo 
+    nahravac_content.innerHTML = `<p>V následujícím kroku se zobrazí slovo 
     požadované k vyslovení (číslovky 0 až 9) a také tlačítko "REC", 
     po jehož stisknutí se spustí nahrávání daného slova.</p>
-    <p>Je potřeba, aby se celá sada slov nahrála ${POCET_SAD}&nbsp;-&nbsp;krát.
+    <p>Je potřeba, aby se celá sada slov nahrála ${POCET_SAD}krát.
     (celkem ${POCET_SAD * sadaSlov.length} nahrávek)</p>`;
 
     validaceKroku = true;
@@ -160,7 +160,7 @@ function _krokNahravka() {
     zmenitStavTlacitkaRec('enabled');
     zmenitStavTlacitkaNext('disabled');
 
-    content.innerHTML = `<p class="text-center">Stiskněte \"REC\" a poté řekněte slovo</p>
+    nahravac_content.innerHTML = `<p class="text-center">Stiskněte \"REC\" a poté řekněte slovo</p>
     <p class="text-center text-big">\"${sadaSlov[idxSlova]}\"</p>`;
 
     
@@ -194,7 +194,7 @@ function _krokDokonceniSady() {
     zmenitStavTlacitkaRec('disabled');
     zmenitStavTlacitkaNext('enabled');
 
-    content.innerHTML = `<p class="text-center">Sada byla dokončena.<br>Můžete pokračovat na další.</p>
+    nahravac_content.innerHTML = `<p class="text-center">Sada byla dokončena.<br>Můžete pokračovat na další.</p>
     <p class="text-center">Počet sad:  ${idxSady + 1} z ${POCET_SAD}</p>`
 
     validaceKroku = true;
@@ -208,7 +208,7 @@ function _krokKonec() {
     btnPlay.style.visibility = 'hidden';
     display.style.visibility = 'hidden';
 
-    content.innerHTML = `<p>Všechny sady byly dokončeny.</p><p>Děkuji za spolupráci.</p>`;
+    nahravac_content.innerHTML = `<p>Všechny sady byly dokončeny.</p><p>Děkuji za spolupráci.</p>`;
 
     notifyEnd(zeroFill(getCookie('userID'), 4) + '_' + pohlavi);
 }

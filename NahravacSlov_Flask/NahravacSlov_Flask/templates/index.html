@@ -18,7 +18,7 @@
     <button id="btnReset" style="display:none; color:black; background-color:grey;" onclick="btnReset_click()">Reset</button>
     <!--<div class="alert"></div>--><!--<strong>Chyba!</strong>-->  
     <div id="main-panel">
-        <div id="content"></div>
+        <div id="nahravac-content"></div>
         <div id="display-container">
             <canvas id="display"></canvas>
         </div>
@@ -43,10 +43,15 @@
     <!--<a id="save">Save</a>-->
 
     <script>
-        const urlParams = new URLSearchParams(window.location.search);
 
-        const DEBUG = urlParams.has('debug');
-        const OFFLINE = urlParams.has('offline');
+        let DEBUG = false
+        let OFFLINE = false
+
+        if (typeof URLSearchParams === "function") {
+            const urlParams = new URLSearchParams(window.location.search);
+            DEBUG = urlParams.has('debug');
+            OFFLINE = urlParams.has('offline');
+        }
 
         if (DEBUG) {
             console.log('DEBUG MODE')
